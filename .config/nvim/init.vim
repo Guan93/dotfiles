@@ -16,39 +16,42 @@ Plug 'tpope/vim-abolish'
 " Commenting and uncommenting
 Plug 'tpope/vim-commentary'
 
-"Complementary pairs of mappings
+" Complementary pairs of mappings
 Plug 'tpope/vim-unimpaired'
 
-"Git wrapper
+" Git wrapper
 Plug 'tpope/vim-fugitive'
 
-"One-Dark theme
+" One-Dark theme
 Plug 'joshdick/onedark.vim'
 
-"Airline
+" Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-"Improved syntax highlighting
+" Improved syntax highlighting
 Plug 'sheerun/vim-polyglot'
 
-"Ale Linter
+" Ale Linter
 Plug 'w0rp/ale'
 
-"Autocomplete
+" Autocomplete
 Plug 'roxma/nvim-completion-manager'
 
-"Tree view
+" Tree view
 Plug 'scrooloose/nerdtree'
 
-"Sort import commands
+" Sort import commands
 Plug 'fisadev/vim-isort'
 
-"REPL
+" REPL
 Plug 'jpalardy/vim-slime'
 
-"yapf
+" yapf
 Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
+
+" Autocomplete pairs
+Plug 'jiangmiao/auto-pairs'
 
 " Initialize plugin system
 call plug#end()
