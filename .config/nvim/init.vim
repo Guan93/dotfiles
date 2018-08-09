@@ -13,6 +13,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Improved syntax highlighting
+Plug 'wellle/targets.vim'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'w0rp/ale'
 Plug 'scrooloose/nerdtree'
