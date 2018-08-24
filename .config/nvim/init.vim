@@ -37,6 +37,7 @@ call plug#end()
 "===================================settings=============================
 set encoding=utf-8
 set number 		"row number
+set relativenumber
 set nocompatible	"set compatible
 set hlsearch
 set incsearch		"enable incsearch
@@ -68,6 +69,14 @@ let mapleader="\<space>"
 noremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
+nnoremap H 0
+nnoremap L $
+nnoremap J G
+nnoremap K gg
+
+vnoremap <leader><C-c> "*y
+nnoremap <leader><C-v> "*p
+
 map <leader><C-n> :NERDTreeToggle<CR>
 
 map <C-Y> :call yapf#YAPF()<cr>
@@ -78,8 +87,8 @@ nnoremap <leader>sf :CtrlSF<Space>
 autocmd FileType python nnoremap <leader>= :0,$!yapf<CR>
 autocmd FileType python nnoremap <leader>i :!isort %<CR><CR>
 
-nnoremap <leader>ud :YcmCompleter GoTo<CR>
-nnoremap <leader>uj :YcmCompleter GetDoc<CR>
+nnoremap gd :YcmCompleter GoTo<CR>
+nnoremap gj :YcmCompleter GetDoc<CR>
 nmap <leader>pc :pclose!<CR>
 
 nmap <silent> <leader>aj :ALENext<cr>
