@@ -69,10 +69,8 @@ let mapleader="\<space>"
 noremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
-nnoremap H 0
+nnoremap H ^
 nnoremap L $
-nnoremap J G
-nnoremap K gg
 
 vnoremap <leader><C-c> "*y
 nnoremap <leader><C-v> "*p
@@ -88,7 +86,7 @@ autocmd FileType python nnoremap <leader>= :0,$!yapf<CR>
 autocmd FileType python nnoremap <leader>i :!isort %<CR><CR>
 
 nnoremap gd :YcmCompleter GoTo<CR>
-nnoremap gj :YcmCompleter GetDoc<CR>
+nnoremap <space>gj :YcmCompleter GetDoc<CR>
 nmap <leader>pc :pclose!<CR>
 
 nmap <silent> <leader>aj :ALENext<cr>

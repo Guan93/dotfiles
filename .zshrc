@@ -56,7 +56,8 @@ plugins=(git
          docker
          sublime
          zsh-syntax-highlighting
-         # vi-mode
+         vi-mode
+         zsh-autosuggestions
          python)
 
 source $ZSH/oh-my-zsh.sh
@@ -64,8 +65,9 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 PATH="$PATH:$HOME/anaconda3/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$PATH:/usr/local/smlnj/bin"
 
-# export MANPATH="/usr/local/man:$MANPATH" 
+ #export MANPATH="/usr/local/man:$MANPATH" 
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
