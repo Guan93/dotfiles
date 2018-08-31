@@ -75,7 +75,7 @@ nnoremap L $
 vnoremap <leader><C-c> "*y
 nnoremap <leader><C-v> "*p
 
-map <leader><C-n> :NERDTreeToggle<CR>
+map <C-b> :NERDTreeToggle<CR>
 
 map <C-Y> :call yapf#YAPF()<cr>
 imap <C-Y> <c-o>:call yapf#YAPF()<cr>
