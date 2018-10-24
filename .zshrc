@@ -51,10 +51,9 @@ ZSH_THEME="avit"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git
+         tmux
          extract
          z
-         docker
-         sublime
          zsh-syntax-highlighting
          vi-mode
          zsh-autosuggestions
@@ -66,6 +65,7 @@ source $ZSH/oh-my-zsh.sh
 
 PATH="$PATH:$HOME/anaconda3/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$PATH:/usr/local/smlnj/bin"
+export PATH="$PATH:/Applications/Racket v7.0/bin"
 
  #export MANPATH="/usr/local/man:$MANPATH" 
 
@@ -127,3 +127,6 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
 alias vi=nvim
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

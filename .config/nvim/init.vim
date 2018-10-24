@@ -30,6 +30,8 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'majutsushi/tagbar'
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
+Plug 'junegunn/vim-easy-align'
+Plug 'vim-scripts/YankRing.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -65,12 +67,17 @@ if (has("termguicolors"))
 endif
 
 "================================key map=================================
+tnoremap <Esc> <C-\><C-n>
+
 let mapleader="\<space>"
 noremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
-nnoremap H ^
-nnoremap L $
+noremap H ^
+noremap L $
+
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 vnoremap <leader><C-c> "*y
 nnoremap <leader><C-v> "*p
@@ -87,7 +94,6 @@ autocmd FileType python nnoremap <leader>i :!isort %<CR><CR>
 
 nnoremap gd :YcmCompleter GoTo<CR>
 nnoremap <space>gj :YcmCompleter GetDoc<CR>
-nmap <leader>pc :pclose!<CR>
 
 nmap <silent> <leader>aj :ALENext<cr>
 nmap <silent> <leader>ak :ALEPrevious<cr>
@@ -100,6 +106,12 @@ let g:UltiSnipsJumpBackwardTrigger = '<C-p>'
 let g:ycm_key_list_select_completion   = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
+nnoremap <silent> <leader>y :YRShow<CR>
+let g:yankring_replace_n_pkey = '<Leader>m'
+let g:yankring_replace_n_nkey = '<Leader>n'
 "=============================plugin settings===========================
 let NERDTreeShowHidden = 1
 let g:ctrlsf_ackprg = 'ag'
