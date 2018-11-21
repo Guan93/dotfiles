@@ -3,12 +3,16 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 
-Plug 'joshdick/onedark.vim'
 Plug 'sheerun/vim-polyglot'
+
+"Plug 'joshdick/onedark.vim'
+"Plug 'liuchengxu/space-vim-dark'
+"Plug 'lifepillar/vim-solarized8'
+Plug 'NLKNguyen/papercolor-theme'
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -27,11 +31,11 @@ Plug 'dyng/ctrlsf.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'airblade/vim-gitgutter'
 Plug 'Valloric/YouCompleteMe'
-Plug 'majutsushi/tagbar'
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-scripts/YankRing.vim'
+Plug 'scrooloose/nerdcommenter'
 
 " Initialize plugin system
 call plug#end()
@@ -56,7 +60,10 @@ filetype plugin indent on
 runtime macros/matchit.vim
 
 syntax on
-colorscheme onedark
+
+set background=light
+colorscheme PaperColor
+hi Comment cterm=italic
 
 "============================enable true color===========================
 if (has("nvim"))
@@ -75,6 +82,8 @@ nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 noremap H ^
 noremap L $
+
+nnoremap <leader>x :bd<CR>
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -121,6 +130,7 @@ let g:airline_powerline_fonts            = 1
 let g:airline#extensions#branch#enabled  = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#ale#enabled     = 1
+let g:airline_theme                      = 'papercolor'
 
 " ale
 let g:ale_sign_column_always = 1
@@ -150,6 +160,11 @@ let g:ycm_semantic_triggers =  {
             \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
             \ 'cs,lua,javascript': ['re!\w{2}'],
             \ }
+
+" Leaderf
+let g:Lf_PreviewResult = {'Function':0, 'Colorscheme':1}
+nnoremap <leader><C-t> :Leaderf bufTag --right<CR>
+nnoremap <leader><C-f> :LeaderfFunction!<CR>
 "============================add log files==============================
 let $NVIM_PYTHON_LOG_FILE="/tmp/nvim_log"
 let $NVIM_NCM_LOG_LEVEL="DEBUG"
