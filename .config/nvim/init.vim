@@ -84,6 +84,7 @@ noremap H ^
 noremap L $
 
 nnoremap <leader>x :bd<CR>
+nnoremap QQ :q!<CR>
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -95,7 +96,7 @@ map <C-b> :NERDTreeToggle<CR>
 
 map <C-Y> :call yapf#YAPF()<cr>
 imap <C-Y> <c-o>:call yapf#YAPF()<cr>
-nmap <Leader><c-t> :TagbarToggle<CR>
+
 nnoremap <leader>sf :CtrlSF<Space>
 
 autocmd FileType python nnoremap <leader>= :0,$!yapf<CR>
