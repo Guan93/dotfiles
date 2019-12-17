@@ -1,12 +1,10 @@
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="jreese"
+ZSH_THEME=""
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -52,20 +50,46 @@ ZSH_THEME="jreese"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git
          tmux
-         extract
-         z
          zsh-syntax-highlighting
-         vi-mode
+         #vi-mode
          zsh-autosuggestions
-         python)
+         z.lua
+         #z
+         #fzf-z
+         )
 
 source $ZSH/oh-my-zsh.sh
 
+
+# Pure theme
+autoload -U promptinit; promptinit
+prompt pure
+
+# Output additional information about paths, repos and exec time
+
+precmd() {
+    if [ ! $PIPENV_ACTIVE ] && { [ -z $VIRTUAL_ENV ] || [ $VIRTUAL_ENV = conda ] } && [ -n $PYENV_SHELL ]; then
+        local version
+        version=${(@)$(pyenv version)[1]}
+        if [ $version = system ]; then
+            unset VIRTUAL_ENV
+        else
+            VIRTUAL_ENV=$version
+        fi
+    fi
+}
+
 # User configuration
 
-PATH="$PATH:$HOME/anaconda3/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="$PATH:/usr/local/smlnj/bin"
-export PATH="$PATH:/Applications/Racket v7.0/bin"
+#export PATH="$HOME/Library/Python/3.7/bin:$PATH"
+export PATH="$HOME/.cask/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/.emacs.d/bin:$PATH"
+
+#export PATH="$PATH:/usr/local/smlnj/bin"
+#export PATH="$PATH:/Applications/Racket v7.0/bin"
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+#export PATH="$PATH:$HOME/.rvm/bin"
 
  #export MANPATH="/usr/local/man:$MANPATH" 
 
@@ -97,36 +121,42 @@ export PATH="$PATH:/Applications/Racket v7.0/bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# IfTerm Dock icon
-# add this to your .bash_profile or .zshrc
-function toggleiTerm() {
-pb='/usr/libexec/PlistBuddy'
-iTerm='/Applications/iTerm.app/Contents/Info.plist'
-echo "Do you wish to hide iTerm in Dock?"
-select ync in "Hide" "Show" "Cancel"; do
-case $ync in
-'Hide' )
-$pb -c "Add :LSUIElement bool true" $iTerm
-echo "relaunch iTerm to take effectives"
-break
-;;
-'Show' )
-$pb -c "Delete :LSUIElement" $iTerm
-echo "run killall 'iTerm' to exit, and then relaunch it"
-break
-;;
-'Cancel' )
-break
-;;
-esac
-done
-}
+# Completion
+#eval "$(pipenv --completion)"
 
 # Add colors to Terminal
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
-alias vi=nvim
+export BAT_THEME="Monokai Extended Light"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# aliases
+
+# cmd tools
+alias vi="nvim"
+alias vim="nvim"
+alias cat="bat"
+alias help="tldr"
+alias top="htop"
+alias preview="fzf --preview 'bat --color \"always\" {}'"
+export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(open {})+abort'"
+
+# config files
+alias vz="vi ~/.zshrc"
+alias vt="vi ~/.tmux.conf"
+
+# virtualenv
+alias av="source venv/bin/activate"
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/repos
+source /usr/local/bin/virtualenvwrapper.sh
+
+# pyenv init
+eval "$(pyenv init -)"
+export PYENV_VERSION="system"
+alias ps="pyenv shell"
+alias pd="pyenv shell $PYENV_VERSION"
+
+# pipenv
+alias pr="pipenv run"
+export PIPENV_VENV_IN_PROJECT=true
